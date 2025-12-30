@@ -3,9 +3,12 @@ import dotenv from 'dotenv'
 dotenv.config();
 import cors from 'cors'
 import connectToDatabase from './config/db.js'
-import authRouter from './routes/auth.routes.js';
 import cookieParser from 'cookie-parser';
 connectToDatabase()
+
+import authRouter from './routes/auth.routes.js';
+import userRouter from './routes/user.routes.js';
+
 
 const PORT = process.env.PORT
 
@@ -17,6 +20,7 @@ app.use(cookieParser())
 app.use(cors())
 
 app.use('/api/auth', authRouter)
+app.use('/api/user', userRouter)
 
 app.listen(PORT, (req, res) => {
     console.log(`Server is running at PORT : ${PORT}`)
